@@ -15,14 +15,17 @@ sudo apt-get install lua5.3 liblua5.3-dev
 ```bash
 alexander@dev:~$ which lua
 /usr/bin/lua
+alexander@dev:~$
 alexander@dev:~$ lua -v
 Lua 5.3.1  Copyright (C) 1994-2015 Lua.org, PUC-Rio
+alexander@dev:~$
 alexander@dev:~$ ls -la /usr/include/lua5.3
 -rw-r--r--  1 root root  8433 Aug 14  2015 lauxlib.h
 -rw-r--r--  1 root root 14825 Aug 14  2015 lua.h
 -rw-r--r--  1 root root   191 Aug 14  2015 lua.hpp
 -rw-r--r--  1 root root 21016 Apr 14  2016 luaconf.h
 -rw-r--r--  1 root root  1173 Aug 14  2015 lualib.h
+alexander@dev:~$
 alexander@dev:~$ ls -la /usr/lib/x86_64-linux-gnu/liblua*
 -rw-r--r-- 1 root root 450014 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3-c++.a
 lrwxrwxrwx 1 root root     22 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3-c++.so -> liblua5.3-c++.so.0.0.0
@@ -48,12 +51,16 @@ LoadModulePath=${libdir}/modules
 LoadModule=zbx_lua.so
 ```
 
-5) Check
+5) Restart Zabbix agent
+```bash
+alexander@dev:~$ sudo systemctl restart zabbix-agent
+```
+
+6) Check
 ```bash
 alexander@dev:~$ grep zbx_lua.so /var/log/zabbix/zabbix_agentd.log
 20174:20171001:210332.109 loaded modules: zbx_lua.so
-```
-```bash
+alexander@dev:~$
 alexander@dev:~$ /usr/sbin/zabbix_agentd --print | grep lua.version
 lua.version                                   [s|Lua 5.3
 ```
