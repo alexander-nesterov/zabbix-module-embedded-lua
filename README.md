@@ -41,7 +41,14 @@ lrwxrwxrwx 1 root root     18 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3.s
 alexander@dev:~$ gcc -fPIC -shared -o zbx_lua.so zbx_lua.c -I../../../include -llua5.3 -lm
 ```
 
-4) Check
+4) Set load module in zabbix_agentd.conf
+```bash
+alexander@dev:~$ cat zabbix_agentd.conf | grep ^LoadModule
+LoadModulePath=${libdir}/modules
+LoadModule=zbx_lua.so
+```
+
+5) Check
 ```bash
 alexander@dev:~$ grep zbx_lua.so /var/log/zabbix/zabbix_agentd.log
 20174:20171001:210332.109 loaded modules: zbx_lua.so
