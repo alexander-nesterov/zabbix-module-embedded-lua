@@ -46,7 +46,7 @@ alexander@dev:~$ gcc -fPIC -shared -o zbx_lua.so zbx_lua.c -I../../../include -l
 
 4) Set load module in zabbix_agentd.conf
 ```bash
-alexander@dev:~$ cat zabbix_agentd.conf | grep ^LoadModule
+alexander@dev:~$ cat /etc/zabbix/zabbix_agentd.conf | grep ^LoadModule
 LoadModulePath=${libdir}/modules
 LoadModule=zbx_lua.so
 ```
