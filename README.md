@@ -32,6 +32,7 @@ lrwxrwxrwx 1 root root     22 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3-c
 lrwxrwxrwx 1 root root     18 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3.so -> liblua5.3.so.0.0.0
 lrwxrwxrwx 1 root root     18 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3.so.0 -> liblua5.3.so.0.0.0
 -rw-r--r-- 1 root root 224104 Apr 14  2016 /usr/lib/x86_64-linux-gnu/liblua5.3.so.0.0.0
+```
 
 2) Download source code of Zabbix and then run the ```./configure``` command (without arguments) in the root of Zabbix source tree
 
@@ -48,6 +49,21 @@ alexander@dev:~$ grep zbx_lua.so /var/log/zabbix/zabbix_agentd.log
 ```bash
 alexander@dev:~$ /usr/sbin/zabbix_agentd --print | grep lua.version
 lua.version                                   [s|Lua 5.3
+```
+and then I will check the following script
+```lua
+function sum (...)
+	local s = 0
+	for i, v in ipairs{...} do
+		s = s + v
+	end
+	return s
+end
+function main ()
+	local s = sum(10, 59, 69)
+	print(string.format("%d", s))
+end
+main()
 ```
 
 
