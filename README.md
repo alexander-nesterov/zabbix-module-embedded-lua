@@ -10,7 +10,7 @@ to build this module you need:
 
 1) Install Lua
 ```bash
-sudo apt-get install lua5.3 liblua5.3-dev
+alexander@dev:~$sudo apt-get install lua5.3 liblua5.3-dev
 ```
 ```bash
 alexander@dev:~$ which lua
